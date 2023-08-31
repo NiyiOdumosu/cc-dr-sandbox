@@ -1,5 +1,10 @@
 # cc-dr-sandbox
 
+### Public Documentation & Recommendation
+https://docs.confluent.io/cloud/current/multi-cloud/cluster-linking/dr-failover.html#disaster-recovery-requirements-for-ak-clients
+
+>When the clients start, they must use the bootstrap server and security credentials of the DR cluster. It is not best practice to hardcode the bootstrap servers and security credentials of your primary and DR clusters into your clients’ code. <span style="color:lightgreen">Instead, you should store the bootstrap server of the active cluster in a Service Discovery tool (like **Hashicorp Consul**) and the security credentials in a key manager (like **Hashicorp Vault** or AWS Secret Manager).</span> When a client starts up, it fetches its bootstrap server and security credentials from these tools. To trigger a failover, you change the active bootstrap server and security credentials in these tools to those of the DR cluster. Then, when your clients restart, they will bootstrap to the DR cluster.
+
 ### Application Failover Flow:
 1) Client is interacting with active cluster, it starts up with bootstrap and vault creds for that cluster
 2) Disaster strikes and Active cluster is no longer available
