@@ -24,7 +24,7 @@ public class ProducerExample {
         }
 
         Properties props = loadConfig(args[0]);
-        final String topic = "purchases";
+        final String topic = "topic-us-east";
 
         ConsulClient consulClient = new ConsulClient("localhost");
 
@@ -44,10 +44,10 @@ public class ProducerExample {
 
         try {
             VaultConfig vaultConfig = new VaultConfig()
-            .address(vaultAddress)
-            .token(vaultToken)
-            .engineVersion(1)
-            .build();
+                    .address(vaultAddress)
+                    .token(vaultToken)
+                    .engineVersion(1)
+                    .build();
             Vault vault = new Vault(vaultConfig);
             LogicalResponse vaultResponse = vault.logical().read("secret/data/mytestfailoverapp/apikey");
             String jsonString = vaultResponse.getData().get("data");
@@ -70,11 +70,11 @@ public class ProducerExample {
 
 
         System.out.println("Properties " + props);
-        String[] users = {"eabara", "jsmith", "sgarcia", "jbernard", "htanaka", "awalther"};
-        String[] items = {"book", "alarm clock", "t-shirts", "gift card", "batteries"};
+        String[] users = {"niyi", "jsmith", "sgarcia", "jbernard", "htanaka", "awalther"};
+        String[] items = {"jeans", "alarm clock", "t-shirts", "gift card", "batteries"};
         try (final Producer<String, String> producer = new KafkaProducer<>(props)) {
             final Random rnd = new Random();
-            final Long numMessages = 10L;
+            final Long numMessages = 25L;
             for (Long i = 0L; i < numMessages; i++) {
                 String user = users[rnd.nextInt(users.length)];
                 String item = items[rnd.nextInt(items.length)];
