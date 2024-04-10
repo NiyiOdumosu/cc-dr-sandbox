@@ -17,8 +17,9 @@ https://docs.confluent.io/cloud/current/multi-cloud/cluster-linking/dr-failover.
 ### Steps to Run:
 
 1) Run docker compose to start Hashicorp Consul and Vault
-        `cd docker setup`
-        `docker-compose up -d`
+
+        cd docker setup
+        docker-compose up -d
 
 You should see vault running on docker locally on port `8200` and consul on port `8500`.
 
