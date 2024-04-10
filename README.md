@@ -10,9 +10,10 @@ https://docs.confluent.io/cloud/current/multi-cloud/cluster-linking/dr-failover.
 2) Disaster strikes and Active cluster is no longer available
 3) Admin runs script/pipeline to promote the mirror topics in DR and update the Bidirectional Clusterlink configuration
 4) The bootstrap URL and the api keys need to be fetched for the DR site. There are a few approaches here:
-* Operator or failover script updates the existing bootstrap in consul and vault keys and restarts the application [Used in this repo]
-* Operator or failover script updates the existing bootstrap in consul, the vault keys for both clusters - Active and DR are pre-setup in vault and application uses code condition to decide which one to use during startup
-* Application periodically polls consul to check for changes in the bootstrap server. When that is detected, it restarts its producer/consumer with the updated bootstrap and vault credentials.
+
+    * Operator or failover script updates the existing bootstrap in consul and vault keys and restarts the application [Used in this repo]
+    * Operator or failover script updates the existing bootstrap in consul, the vault keys for both clusters - Active and DR are pre-setup in vault and       application uses code condition to decide which one to use during startup
+    * Application periodically polls consul to check for changes in the bootstrap server. When that is detected, it restarts its producer/consumer with the updated bootstrap and vault credentials.
 
 ### Steps to Run:
 
